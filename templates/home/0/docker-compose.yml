@@ -1,0 +1,16 @@
+home:
+  restart: always
+  labels:
+    container: home:0.3.1-RC46
+  tty: true
+  image: vpp-docreg001.viareportdomain.com:8080/inativ/home:0.3.1-RC46
+  stdin_open: true
+LB-home:
+  restart: always
+  expose:
+  - 80:80
+  tty: true
+  image: rancher/load-balancer-service
+  links:
+  - home:home
+  stdin_open: true

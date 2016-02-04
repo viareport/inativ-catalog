@@ -1,0 +1,12 @@
+.catalog:
+  name: "Home"
+  version: "1.0.0"
+  description: "Affichage de la home page inativ"
+home:
+  upgrade_strategy:
+    start_first: true
+  scale: 1
+LB-home:
+  scale: 1
+  load_balancer_config:
+    name: LB-home config
