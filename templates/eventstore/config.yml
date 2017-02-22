@@ -1,4 +1,4 @@
 name: "EventStore stack"
 description: "EventStore cluster deployment"
 version: "0"
-category: inativ
+category: cluster
