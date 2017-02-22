@@ -1,0 +1,46 @@
+.catalog:
+  name: "EventStore-cluster"
+  version: "0"
+  questions:
+    - variable: "cluster_size"
+      description: "The number of nodes in the cluster."
+      label: "Cluster size"
+      type: "number"
+      default: "3"
+    - variable: "volume_data"
+      description: "The path the db should be loaded/saved to. (Host path)"
+      label: "Db"
+      type: "string"
+      default: "/opt/eventstore-cluster/db"
+    - variable: "volume_log"
+      description: "Path where to keep log files. (Host path)"
+      label: "Log"
+      type: "string"
+      default: "/opt/eventstore-cluster/log"
+
+version: '2'
+services:
+  eventstore-ui:
+    retain_ip: true
+    scale: 1
+    start_on_create: true
+  dns:
+    start_on_create: true
+  eventstore-node:
+    retain_ip: true
+    scale: ${cluster_size}
+    start_on_create: true
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      recreate_on_quorum_strategy_config:
+        quorum: ${cluster_size}
+      port: 2113
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      strategy: recreateOnQuorum
+      request_line: GET "/gossip" "HTTP/1.0"
+      reinitializing_timeout: 60000
+
+
