@@ -1,7 +1,7 @@
 version: '2'
 services:
   eventstore-master:
-    image: registry.viareport.com:8080/inativ/eventstore-manager:cluster
+    image: registry.viareport.com:8080/inativ/eventstore-cluster:3.9.3
     environment:
       EVENTSTORE_CLUSTER_SIZE: ${cluster_size}
       NODE_PRIORITY: ${cluster_size}
@@ -9,12 +9,12 @@ services:
     tty: true
     labels:
       io.rancher.container.pull_image: always
-  dns:
-    image: rancher/dns-service
     links:
-    - eventstore-node:eventstore-node
+    - eventstore-dns:dns
+  eventstore-dns:
+    image: rancher/dns-service
   eventstore-node:
-    image: registry.viareport.com:8080/inativ/eventstore:cluster
+    image: registry.viareport.com:8080/inativ/eventstore-cluster:3.9.3
     environment:
       EVENTSTORE_CLUSTER_SIZE: ${cluster_size}
     stdin_open: true
@@ -24,3 +24,5 @@ services:
     tty: true
     labels:
       io.rancher.container.pull_image: always
+    links:
+    - eventstore-dns:dns

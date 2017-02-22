@@ -7,24 +7,27 @@
       label: "Cluster size"
       type: "int"
       default: "3"
+      required : true
     - variable: "volume_data"
       description: "The path the db should be loaded/saved to. (Host path)"
       label: "Db"
       type: "string"
       default: "/opt/eventstore-cluster/db"
+      required : true
     - variable: "volume_log"
       description: "Path where to keep log files. (Host path)"
       label: "Log"
       type: "string"
       default: "/opt/eventstore-cluster/log"
+      required : true
 
 version: '2'
 services:
-  eventstore-ui:
+  eventstore-master:
     retain_ip: true
     scale: 1
     start_on_create: true
-  dns:
+  eventstore-dns:
     start_on_create: true
   eventstore-node:
     retain_ip: true
