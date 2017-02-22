@@ -5,7 +5,7 @@
     - variable: "cluster_size"
       description: "The number of nodes in the cluster."
       label: "Cluster size"
-      type: "number"
+      type: "int"
       default: "3"
     - variable: "volume_data"
       description: "The path the db should be loaded/saved to. (Host path)"
