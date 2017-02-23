@@ -3,7 +3,7 @@ services:
   eventstore-master:
     image: registry.viareport.com:8080/inativ/eventstore-cluster:3.9.3
     environment:
-      EVENTSTORE_CLUSTER_SIZE: ${cluster_size}
+      EVENTSTORE_CLUSTER_SIZE: ${cluster_size+1}
       NODE_PRIORITY: ${cluster_size}
     stdin_open: true
     volumes:
@@ -15,7 +15,7 @@ services:
   eventstore-node:
     image: registry.viareport.com:8080/inativ/eventstore-cluster:3.9.3
     environment:
-      EVENTSTORE_CLUSTER_SIZE: ${cluster_size}
+      EVENTSTORE_CLUSTER_SIZE: ${cluster_size+1}
     stdin_open: true
     volumes:
     - ${volume_data}:/var/lib/eventstore
