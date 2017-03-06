@@ -1,0 +1,34 @@
+.catalog:
+  name: "EventStore-cluster"
+  version: "0"
+  questions:
+    - variable: "cluster_size"
+      description: "The number of nodes in the cluster."
+      label: "Cluster size"
+      type: "int"
+      default: "3"
+      required : true
+    - variable: "cluster_name"
+      description: "The name of the cluster."
+      label: "Cluster name"
+      type: "string"
+      required : true
+    - variable: "volume_log"
+      description: "Path where to keep log files. (Host path)"
+      label: "Log"
+      type: "string"
+      default: "/opt/elasticsearch-cluster/log"
+      required : true
+
+version: '2'
+services:
+  worker:
+    scale: ${cluster_size}
+    start_on_create: true
+  kibana:
+    scale: 1
+    start_on_create: true
+  master:
+    scale: 1
+    start_on_create: true
+
