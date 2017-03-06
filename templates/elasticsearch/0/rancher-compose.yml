@@ -19,6 +19,30 @@
       type: "string"
       default: "/opt/elasticsearch-cluster/log"
       required : true
+    - variable: "autocreate_index"
+      description: "Defines which indices should be automatically created"
+      label: "Index auto create"
+      type: "string"
+      default: "+.*,-*"
+      required: true
+    - variable: "security_enabled"
+      description: "Elasticsearch xpack security enabled"
+      label: "Security enabled"
+      type: "boolean"
+      default: true
+      required: true
+    - variable: "data_jvm_memory"
+      description: "Elasticsearch data nodes JVM memory"
+      label: "Data node JVM memory"
+      type: "string"
+      default: "1g"
+      required: true
+    - variable: "master_jvm_memory"
+      description: "Elasticsearch master node JVM memory"
+      label: "Master node JVM memory"
+      type: "string"
+      default: "512m"
+      required: true
 
 version: '2'
 services:
