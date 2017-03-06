@@ -22,7 +22,7 @@
 
 version: '2'
 services:
-  worker:
+  data:
     scale: ${cluster_size}
     start_on_create: true
   kibana:

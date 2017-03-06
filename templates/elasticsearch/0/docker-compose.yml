@@ -29,7 +29,7 @@ services:
     stdin_open: true
     tty: true
     links:
-    - master-node:elasticsearch
+    - master:elasticsearch
     labels:
       io.rancher.container.pull_image: always
   master:
