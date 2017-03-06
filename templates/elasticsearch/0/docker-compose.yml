@@ -1,7 +1,6 @@
 version: '2'
 services:
   data:
-    mem_limit: 1048576000
     cap_add:
     - IPC_LOCK
     image: docker.elastic.co/elasticsearch/elasticsearch:5.2.2
@@ -33,7 +32,6 @@ services:
     labels:
       io.rancher.container.pull_image: always
   master:
-    mem_limit: 1048576000
     cap_add:
     - IPC_LOCK
     image: docker.elastic.co/elasticsearch/elasticsearch:5.2.2
