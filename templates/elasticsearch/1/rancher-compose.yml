@@ -1,6 +1,6 @@
 .catalog:
   name: "EventStore-cluster"
-  version: "0"
+  version: "1"
   questions:
     - variable: "cluster_size"
       description: "The number of nodes in the cluster."
