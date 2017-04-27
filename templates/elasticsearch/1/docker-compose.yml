@@ -21,6 +21,9 @@ services:
         soft: 65536
     volumes:
     - ${volume_log}/${cluster_name}/$${service_name}:/var/log/elasticsearch
+    - ${volume_data}/${cluster_name}/$${service_name}:/var/lib/elasticsearch
+    labels:
+      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
   kibana:
     image: docker.elastic.co/kibana/kibana:5.2.2
     environment:
@@ -51,3 +54,4 @@ services:
         soft: 65536
     volumes:
     - ${volume_log}/${cluster_name}/$${service_name}:/var/log/elasticsearch
+    - ${volume_data}/${cluster_name}/$${service_name}:/var/lib/elasticsearch
