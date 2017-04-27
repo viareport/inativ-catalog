@@ -20,7 +20,7 @@ services:
         hard: 65536
         soft: 65536
     volumes:
-    - ${volume_log}/${cluster_name}/$${service_name}:/var/log/elasticsearch
+    - ${volume_log}/${cluster_name}/data:/var/log/elasticsearch
   kibana:
     image: docker.elastic.co/kibana/kibana:5.2.2
     environment:
@@ -50,4 +50,4 @@ services:
         hard: 65536
         soft: 65536
     volumes:
-    - ${volume_log}/${cluster_name}/$${service_name}:/var/log/elasticsearch
+    - ${volume_log}/${cluster_name}/master:/var/log/elasticsearch
