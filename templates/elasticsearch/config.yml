@@ -1,4 +1,4 @@
 name: "Elasticsearch stack"
 description: "Elasticsearch cluster deployment"
-version: "1"
+version: "0"
 category: cluster
