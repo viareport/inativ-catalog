@@ -1,5 +1,5 @@
 .catalog:
-  name: "EventStore-cluster"
+  name: "Elasticsearch-cluster"
   description: "Cluster using elasticsearch in version 5.2.2 with log redirection to UDP host"
   version: "5.2.2-1"
   upgrade_from: "1"
