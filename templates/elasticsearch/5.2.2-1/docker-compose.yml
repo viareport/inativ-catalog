@@ -1,0 +1,63 @@
+version: '2'
+services:
+  data:
+    cap_add:
+    - IPC_LOCK
+    image: 192.168.1.71:5000/inativ/elasticsearch:5.2.2
+    environment:
+      ES_JAVA_OPTS: -Xms${data_jvm_memory} -Xmx${data_jvm_memory}
+      bootstrap.memory_lock: 'true'
+      cluster.name: ${cluster_name}
+      discovery.zen.ping.unicast.hosts: master
+      node.master: 'false'
+      xpack.security.enabled: ${security_enabled}
+      action.auto_create_index: ${autocreate_index}
+      ENV: ${plateforme_env}
+      LOG_UDP_PORT: 1515
+      LOG_UDP_HOST: ${log_udp_host}
+    ulimits:
+      memlock:
+        hard: -1
+        soft: -1
+      nofile:
+        hard: 65536
+        soft: 65536
+    volumes:
+    - ${volume_log}/data:/usr/share/elasticsearch/logs
+    - ${volume_data}/data:/usr/share//elasticsearch/data
+    labels:
+      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=${stack_name}/data
+  kibana:
+    image: docker.elastic.co/kibana/kibana:5.2.2
+    environment:
+      xpack.security.enabled: 'false'
+    stdin_open: true
+    tty: true
+    links:
+    - master:elasticsearch
+    labels:
+      io.rancher.container.pull_image: always
+  master:
+    cap_add:
+    - IPC_LOCK
+    image: 192.168.1.71:5000/inativ/elasticsearch:5.2.2
+    environment:
+      ES_JAVA_OPTS: -Xms${master_jvm_memory} -Xmx${master_jvm_memory}
+      bootstrap.memory_lock: 'true'
+      cluster.name: ${cluster_name}
+      node.data: 'false'
+      xpack.security.enabled: ${security_enabled}
+      action.auto_create_index: ${autocreate_index}
+      ENV: ${plateforme_env}
+      LOG_UDP_PORT: 1515
+      LOG_UDP_HOST: ${log_udp_host}
+    ulimits:
+      memlock:
+        hard: -1
+        soft: -1
+      nofile:
+        hard: 65536
+        soft: 65536
+    volumes:
+    - ${volume_log}/master:/usr/share/elasticsearch/logs
+    - ${volume_data}/master:/usr/share/elasticsearch/data
