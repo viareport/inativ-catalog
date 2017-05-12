@@ -20,8 +20,8 @@ services:
         hard: 65536
         soft: 65536
     volumes:
-    - ${volume_log}/${cluster_name}/data:/var/log/elasticsearch
-    - ${volume_data}/${cluster_name}/data:/var/lib/elasticsearch
+    - ${volume_log}/data:/usr/share/elasticsearch/logs
+    - ${volume_data}/data:/usr/share//elasticsearch/data
     labels:
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=${stack_name}/data
   kibana:
@@ -53,5 +53,5 @@ services:
         hard: 65536
         soft: 65536
     volumes:
-    - ${volume_log}/${cluster_name}/master:/var/log/elasticsearch
-    - ${volume_data}/${cluster_name}/master:/var/lib/elasticsearch
+    - ${volume_log}/master:/usr/share/elasticsearch/logs
+    - ${volume_data}/master:/usr/share/elasticsearch/data

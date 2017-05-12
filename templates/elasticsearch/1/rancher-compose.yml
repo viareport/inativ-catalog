@@ -17,13 +17,13 @@
       description: "Path where to keep log files. (Host path)"
       label: "Log"
       type: "string"
-      default: "/opt/elasticsearch-cluster/log"
+      default: "/data/elasticsearch-cluster/log"
       required : true
     - variable: "volume_data"
       description: "Path where to keep data files. (Host path)"
       label: "Data"
       type: "string"
-      default: "/opt/elasticsearch-cluster/data"
+      default: "/data/elasticsearch-cluster/data"
       required : true
     - variable: "autocreate_index"
       description: "Defines which indices should be automatically created"
