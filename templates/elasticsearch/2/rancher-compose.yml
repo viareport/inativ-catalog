@@ -1,8 +1,7 @@
 .catalog:
   name: "Elasticsearch-cluster"
   description: "Cluster using elasticsearch in version 5.2.2 with log redirection to UDP host"
-  version: "5.2.2-1"
-  upgrade_from: "1"
+  version: "2"
   questions:
     - variable: "cluster_size"
       description: "The number of nodes in the cluster."
